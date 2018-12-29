@@ -1,25 +1,25 @@
 var fileNames;
-var counter = -1;
+var lastCounter = 0;
 var loop;
 
-function nextSong(){
+function nextSong(counter){
 
-    counter = (counter >= fileNames.length - 1) ? 0 : counter + 1;
+    var nexButt = document.getElementById("next");
+    nexButt.onclick = function(){
+        nextSong(counter + 1);
+    }
+
+    var listElements = document.getElementsByClassName("listElement");
+    listElements[lastCounter].style.backgroundColor = "inherit";
+    listElements[counter].style.backgroundColor = "#e1e1e1";
+    if(counter == fileNames.length - 1){
+        listElements[counter].style.borderBottomLeftRadius = "25px";
+        listElements[counter].style.borderBottomRightRadius = "25px";
+    }
 
     var videoWrap = document.getElementById("videoWrap");
     videoWrap.innerHTML = '';
-
     videoWrap.style.filter = "grayscale(0%)";
-    
-    var playMeta = document.getElementById("playMeta");
-
-    for(var i = 0; i < fileNames.length; ++i)
-    {
-        var listElement = document.createElement("div");
-        listElement.setAttribute("class","listElement");
-        listElement.innerHTML += fileNames[i].substr(0, fileNames[i].indexOf('.'));
-        playMeta.appendChild(listElement);
-    }
 
     clearInterval(loop);
 
@@ -28,8 +28,8 @@ function nextSong(){
         var audio = document.createElement('audio');
         audio.src = "/media/songs/" + fileNames[counter];
         audio.controls = false;
-	audio.onended = function() { nextSong(); };
-	audio.autoplay = true;
+        audio.onended = function() { nextSong(); };
+        audio.autoplay = true;
 
         var gradientDiv = document.createElement('div');
         gradientDiv.setAttribute("id", "gradient");
@@ -42,12 +42,12 @@ function nextSong(){
         
             if(cick == false){
                 audio.play();
-		gradientDiv.style.filter = "grayscale(0%)";
+		        gradientDiv.style.filter = "grayscale(0%)";
                 cick = true;
             }
             else{
                 audio.pause();
-		gradientDiv.style.filter = "grayscale(100%)";
+		        gradientDiv.style.filter = "grayscale(100%)";
                 cick = false;
             }
         }
@@ -59,21 +59,21 @@ function nextSong(){
         var cick = false;
         video.src = "/media/songs/" + fileNames[counter];
         video.controls = false;
-	video.autoplay = true;
-	video.onended = function() { nextSong(); };
+        video.autoplay = true;
+        video.onended = function() { nextSong(); };
 
         video.onclick = function()
         {
             if(cick == false)
             {
                 video.play();
-		videoWrap.style.filter = "grayscale(0%)";
+		    videoWrap.style.filter = "grayscale(0%)";
                 cick = true;
             }
             else
             {
                 video.pause();
-		videoWrap.style.filter = "grayscale(100%)";
+		    videoWrap.style.filter = "grayscale(100%)";
                 cick = false;
             }
         }
@@ -98,6 +98,7 @@ function nextSong(){
         videoWrap.appendChild(img);
     }
     
+    lastCounter = counter;
 };
 
 function deleteCurrentSong(){
@@ -118,6 +119,20 @@ function deleteCurrentSong(){
     };
 }
 
+function populateList(){
+    var list = document.getElementById("list");
+
+    for(var i = 0; i < fileNames.length; ++i)
+    {
+        var listElement = document.createElement("div");
+        listElement.setAttribute("class","listElement");
+        listElement.setAttribute("onclick","nextSong(" + i + ")");
+
+        listElement.innerHTML += fileNames[i].substr(0, fileNames[i].indexOf('.'));
+        list.appendChild(listElement);
+    }
+}
+
 window.onload = function(){
         var httpRequest = new XMLHttpRequest();
         httpRequest.open('GET','/getSongs');
@@ -127,7 +142,8 @@ window.onload = function(){
             if (httpRequest.readyState === 4) {
                 if (httpRequest.status === 200) {
                     fileNames = JSON.parse(httpRequest.responseText);
-                    nextSong();
+                    populateList();
+                    nextSong(0);
                 }
             }
         }

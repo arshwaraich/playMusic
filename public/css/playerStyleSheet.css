@@ -24,15 +24,30 @@ body {
 
 #playMeta {
     margin: 0px 35px;
-    padding: 10px 0px;
     font-size: 50px;
     font-family: sans-serif;
     background-color: #f3f3f3;
-    height: calc(50% - 20px);
+    height: 50%;
     color: #575050;
     border-radius: 25px;
-    overflow-x: hidden;
-    overflow-y: scroll; 
+}
+
+#listTitle {
+    padding: 30px;
+    background-color: #21D4FD;
+    background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+    margin: 0%;
+    color: #f3f3f3;
+    font-size: 55px;
+    line-height: 90px;
+    height: calc(20% - 60px);
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+#list {
+    overflow-y: scroll;
+    height: 80%;
 }
 
 .listElement {
