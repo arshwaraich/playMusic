@@ -9,6 +9,11 @@ function nextSong(counter){
         nextSong(counter + 1);
     }
 
+    var delButt = document.getElementById("delete");
+    delButt.onclick = function(){
+        deleteCurrentSong(counter);
+    }
+
     var listElements = document.getElementsByClassName("listElement");
     listElements[lastCounter].style.backgroundColor = "inherit";
     listElements[counter].style.backgroundColor = "#e1e1e1";
@@ -101,7 +106,7 @@ function nextSong(counter){
     lastCounter = counter;
 };
 
-function deleteCurrentSong(){
+function deleteCurrentSong(counter){
     let httpRequest = new XMLHttpRequest();
     httpRequest.open('DELETE', "/delete/" + fileNames[counter]);
     httpRequest.send();
