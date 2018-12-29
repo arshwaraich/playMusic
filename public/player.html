@@ -1,0 +1,21 @@
+<html>
+    <head>
+	<title>Player</title>
+	<meta name="theme-color" content="#1a1818">
+	<link rel="shortcut icon" type="image/png" href="https://twemoji.maxcdn.com/2/72x72/1f5a4.png"/>
+        <script src="/js/gradient.js"></script> 
+        <script src="/js/getSongAjax.js"></script> 
+        <link rel="stylesheet" type="text/css" id="stylesheet" href="/css/playerStyleSheet.css">
+    </head>
+    <body>
+        <div id="playArea">
+            <div id="playContent"><div id="videoWrap"></div></div>
+            <div id="playMeta"></div>
+        </div>
+        <button id="next" onclick="nextSong()">Next</button>
+        <a href="/" target="_blank">
+            <button id="add">+</button>
+        </a>
+        <button id="delete" onclick="deleteCurrentSong()">Delete</button>
+    </body>
+</html>

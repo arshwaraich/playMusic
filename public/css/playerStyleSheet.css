@@ -1,0 +1,76 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0px;
+}
+
+#playArea {
+    height: calc(90% - 70px);
+}
+
+#playContent {
+    height: calc(50% - 70px);
+    padding: 35px;
+}
+
+#videoWrap {
+    border-radius: 25px;
+    background-color: #1a1818;
+    overflow: hidden;
+}
+
+#playMeta {
+    margin: 0px 35px;
+    padding: 10px 0px;
+    font-size: 50px;
+    font-family: sans-serif;
+    background-color: #f3f3f3;
+    height: calc(50% - 20px);
+    color: #575050;
+    border-radius: 25px;
+    overflow-x: hidden;
+    overflow-y: scroll; 
+}
+
+.listElement {
+    padding: 20px 40px;
+}
+
+#next {
+    width: calc(75% - 70px);
+    height: 10%;
+    font-size: 88px;
+    border-radius: 100px;
+    border: 0px solid;
+    margin: 35px;
+    background-color: #1a1818;
+    color: #ffffff;
+}
+
+#delete {
+    width: 100%;
+    height: 10%;
+    color: #ffffff;
+    background-color: #ff3e3e;
+    font-size: 80px;
+    border: 0px;
+}
+
+#add {
+    width: calc(25% - 70px);
+    height: 10%;
+    font-size: 88px;
+    border-radius: 100px;
+    border: 0px solid;
+    margin: 35px;
+    background-color: #1a1818;
+    color: #ffffff;
+    float: right;
+}
+
+video {
+    width: 100%;
+    height: 100%;

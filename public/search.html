@@ -1,0 +1,28 @@
+<html>
+    <head>
+	<title>Music</title>
+        <meta name="theme-color" content="#1a1818">
+        <link rel="shortcut icon" type="image/png" href="https://twemoji.maxcdn.com/2/72x72/1f5a4.png"/>
+        <link rel="stylesheet" type="text/css" id="stylesheet" href="/music/css/searchStyleSheet.css">
+        <script src="/music/js/toggle.js"></script> 
+    </head>
+    <body>
+        <form action="/music/addSong" method="POST"> <!--remember to write /music/reqSong when uploading-->
+            <div class="inputDescText">Title</div>
+            <input type="text" name="songName" placeholder="..." autocomplete="off" required>
+            <div class="radioLabel">
+                    <div class="radioSub" style="float: left;">
+                        <input type="radio" id="AudioFileType" name="fileType" value="Audio" required>
+                        <p>Audio</p>
+                    </div>
+                    <div class="radioSub" style="float: right;">
+                        <input type="radio" id="VideoFileType" name="fileType" value="Video" required>
+                        <p>Video</p>
+                    </div>
+            </div>
+            <div class="inputDescText">URL</div>
+            <input type="text" name="songURL" placeholder="https://..." autocomplete="off" required>
+            <input type="submit" value="+ Add to playlist">
+        </form>
+    </body>
+</html>
