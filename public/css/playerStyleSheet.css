@@ -71,6 +71,10 @@ body {
     color: #ffffff;
 }
 
+#next:focus {
+    outline: 0px;
+}
+
 #delete {
     width: 100%;
     height: 10%;
@@ -90,6 +94,10 @@ body {
     background-color: #4f4f4f;
     color: #ffffff;
     float: right;
+}
+
+#add:focus {
+    outline: 0px;
 }
 
 video {
