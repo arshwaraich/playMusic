@@ -5,8 +5,9 @@ var loop;
 function nextSong(counter){
 
     var nexButt = document.getElementById("next");
+    var nexCounter = (counter == fileNames.length - 1) ? 0 : counter + 1;
     nexButt.onclick = function(){
-        nextSong(counter + 1);
+        nextSong(nexCounter);
     }
 
     var delButt = document.getElementById("delete");
@@ -17,10 +18,6 @@ function nextSong(counter){
     var listElements = document.getElementsByClassName("listElement");
     listElements[lastCounter].style.backgroundColor = "inherit";
     listElements[counter].style.backgroundColor = "#e1e1e1";
-    if(counter == fileNames.length - 1){
-        listElements[counter].style.borderBottomLeftRadius = "25px";
-        listElements[counter].style.borderBottomRightRadius = "25px";
-    }
 
     var videoWrap = document.getElementById("videoWrap");
     videoWrap.innerHTML = '';
