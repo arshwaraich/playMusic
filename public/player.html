@@ -1,22 +1,21 @@
 <html>
     <head>
-	<title>Player</title>
-	<meta name="theme-color" content="#1a1818">
-	<link rel="shortcut icon" type="image/png" href="https://twemoji.maxcdn.com/2/72x72/1f5a4.png"/>
-        <script src="/js/gradient.js"></script> 
-        <script src="/js/getSongAjax.js"></script> 
-        <link rel="stylesheet" type="text/css" id="stylesheet" href="/css/playerStyleSheet.css">
+        <title>Player</title>
+        <meta name="theme-color" content="#1a1818">
+        <link rel="shortcut icon" type="image/png" href="https://twemoji.maxcdn.com/2/72x72/1f5a4.png"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+        <script src="/music/js/gradient.js"></script> 
+        <script src="/music/js/getSongAjax.js"></script> 
+        <link rel="stylesheet" type="text/css" id="stylesheet" href="/music/css/playerStyleSheet.css">
     </head>
     <body>
         <div id="playArea">
             <div id="playContent"><div id="videoWrap"></div></div>
             <div id="playMeta">
-                    <div id="listTitle"><span style="
-                        background: white;
-                        padding: 20px;
-                        color: #575050;
-                        border-radius: 50px;
-                    ">Test Playlist</span></div>
+                    <div id="listTitle">
+                        <span>Test Playlist</span>
+                        <i class="fas fa-expand" id="fullScreen"></i>
+                    </div>
                 <div id="list"></div>
             </div>
         </div>

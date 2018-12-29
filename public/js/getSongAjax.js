@@ -30,10 +30,14 @@ function nextSong(counter){
 
     if(fileNames[counter].match(/mp3$/))
     {
+        var fullScreen = document.getElementById("fullScreen");
+        
+        fullScreen.style.display = "none";
+
         var audio = document.createElement('audio');
-        audio.src = "/media/songs/" + fileNames[counter];
+        audio.src = "/music/media/songs/" + fileNames[counter];
         audio.controls = false;
-        audio.onended = function() { nextSong(); };
+        audio.onended = function() { nextSong(counter + 1); };
         audio.autoplay = true;
 
         var gradientDiv = document.createElement('div');
@@ -62,10 +66,10 @@ function nextSong(counter){
     {
         var video = document.createElement('video');
         var cick = false;
-        video.src = "/media/songs/" + fileNames[counter];
+        video.src = "/music/media/songs/" + fileNames[counter];
         video.controls = false;
         video.autoplay = true;
-        video.onended = function() { nextSong(); };
+        video.onended = function() { nextSong(counter + 1); };
 
         video.onclick = function()
         {
@@ -83,7 +87,9 @@ function nextSong(counter){
             }
         }
 
-        video.ondblclick = function()
+        var fullScreen = document.getElementById("fullScreen");
+        
+        fullScreen.onclick = function()
         {
             if (video.requestFullscreen) {
                 video.requestFullscreen();
@@ -93,13 +99,14 @@ function nextSong(counter){
                 video.webkitRequestFullscreen();
             }
         }
+        fullScreen.style.display = "inherit";
 
         videoWrap.appendChild(video);
     }
     else
     {
         var img = document.createElement('img');
-        img.src = "/media/broken.png";
+        img.src = "/music/media/broken.png";
         videoWrap.appendChild(img);
     }
     
@@ -108,7 +115,7 @@ function nextSong(counter){
 
 function deleteCurrentSong(counter){
     let httpRequest = new XMLHttpRequest();
-    httpRequest.open('DELETE', "/delete/" + fileNames[counter]);
+    httpRequest.open('DELETE', "/music/delete/" + fileNames[counter]);
     httpRequest.send();
     document.getElementsByTagName('html')[0].style.cursor = "progress";
     httpRequest.onreadystatechange = () => {
@@ -140,7 +147,7 @@ function populateList(){
 
 window.onload = function(){
         var httpRequest = new XMLHttpRequest();
-        httpRequest.open('GET','/getSongs');
+        httpRequest.open('GET','/music/getSongs');
         httpRequest.send();
         
         httpRequest.onreadystatechange = function(){
