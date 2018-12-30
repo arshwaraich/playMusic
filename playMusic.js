@@ -61,11 +61,16 @@ app.post('/addSong', (req,res)=>{
     var songName = req.body.songName;
 
     if(url.match(/youtube.com/)){
+
+        if(songName == ""){
+            songName = "%(title)s.%(ext)s";
+        }
+
         if(fileType == "Video"){
-            
+
             var childProcess = exec('youtube-dl -f \'bestvideo[ext=mp4]+bestaudio[ext=m4a]\' -o \'./public/media/songs/' + songName + '\' ' + url, (error, stdout, stderr)=> {
                 logger(stdout, stderr);
-                
+
                 if (error !== null) {
                 console.log('exec error: ' + error);
                 }

@@ -7,9 +7,9 @@
         <script src="/music/js/toggle.js"></script> 
     </head>
     <body>
-        <form action="/music/addSong" method="POST"> <!--remember to write /music/reqSong when uploading-->
+        <form action="/addSong" method="POST"> <!--remember to write /music/reqSong when uploading-->
             <div class="inputDescText">Title</div>
-            <input type="text" name="songName" placeholder="..." autocomplete="off" required>
+            <input type="text" name="songName" placeholder="..." autocomplete="off">
             <div class="radioLabel">
                     <div class="radioSub" style="float: left;">
                         <input type="radio" id="AudioFileType" name="fileType" value="Audio" required>
@@ -21,7 +21,7 @@
                     </div>
             </div>
             <div class="inputDescText">URL</div>
-            <input type="text" name="songURL" placeholder="https://..." autocomplete="off" required>
+            <input type="text" name="songURL" placeholder="https://..." autocomplete="off" required autofocus>
             <input type="submit" value="+ Add to playlist">
         </form>
     </body>
