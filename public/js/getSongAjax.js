@@ -32,7 +32,7 @@ function nextSong(counter){
         fullScreen.style.display = "none";
 
         var audio = document.createElement('audio');
-        audio.src = "/music/media/songs/" + fileNames[nexCounter];
+        audio.src = "/music/media/songs/" + fileNames[counter];
         audio.controls = false;
         audio.onended = function() { nextSong(counter + 1); };
         audio.autoplay = true;
@@ -66,7 +66,7 @@ function nextSong(counter){
         video.src = "/music/media/songs/" + fileNames[counter];
         video.controls = false;
         video.autoplay = true;
-        video.onended = function() { nextSong(nexCounter); };
+        video.onended = function() { nextSong(counter); };
 
         video.onclick = function()
         {
