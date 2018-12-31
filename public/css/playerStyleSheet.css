@@ -32,11 +32,18 @@ body {
     color: #ffffff;
     text-align: center;
     height: 100px;
-    padding: calc(50vh - 85px) 0px;
+    padding: calc(50vh - 85px) 0px calc(50vh - 255px);
 }
 
 #titleText {
     border-radius: 0px;
+}
+
+#upPromptDiv {
+    text-align: center;
+    padding: 60px 0px;
+    font-size: 50px;
+    color: white;
 }
 
 #playMeta {

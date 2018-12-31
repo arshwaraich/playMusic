@@ -28,7 +28,9 @@ function nextSong(counter){
     listElements[counter].style.backgroundColor = "#e1e1e1";
 
     var videoWrap = document.getElementById("videoWrap");
-    videoWrap.innerHTML = '';
+    while (videoWrap.firstChild) {
+        videoWrap.removeChild(videoWrap.firstChild);
+    }
     videoWrap.style.filter = "grayscale(0%)";
 
     //Clearing timed gradient callback
@@ -42,7 +44,7 @@ function nextSong(counter){
     {
         
         var audio = document.createElement('audio');
-        audio.src = "/music/media/songs/" + fileNames[counter];
+        audio.src = "/media/songs/" + fileNames[counter];
         audio.controls = false;
         audio.onended = function() { nextSong(nexCounter); };
         audio.autoplay = true;
@@ -85,7 +87,7 @@ function nextSong(counter){
     {
         var video = document.createElement('video');
         var cick = false;
-        video.src = "/music/media/songs/" + fileNames[counter];
+        video.src = "/media/songs/" + fileNames[counter];
         video.controls = false;
         video.autoplay = true;
         video.onended = function() { nextSong(nexCounter); };
@@ -126,7 +128,7 @@ function nextSong(counter){
     else
     {
         var img = document.createElement('img');
-        img.src = "/music/media/broken.png";
+        img.src = "/media/broken.png";
         videoWrap.appendChild(img);
     }
     
@@ -136,7 +138,7 @@ function nextSong(counter){
 
 function deleteCurrentSong(counter){
     let httpRequest = new XMLHttpRequest();
-    httpRequest.open('DELETE', "/music/delete/" + fileNames[counter]);
+    httpRequest.open('DELETE', "/delete/" + fileNames[counter]);
     httpRequest.send();
     document.getElementsByTagName('html')[0].style.cursor = "progress";
     httpRequest.onreadystatechange = () => {
@@ -201,19 +203,42 @@ function expandPlayContent(counter){
     
     var titleDiv = document.createElement("div");
     titleDiv.id = "titleDiv";
+
     var titleText = document.createElement("span");
     titleText.id = "titleText";
     titleText.innerHTML = fileNames[counter].substr(0, fileNames[counter].indexOf(' '));
 
+    var upPromptDiv = document.createElement("div");
+    upPromptDiv.id = "upPromptDiv";
+    upPromptDiv.onclick = function() {
+        event.stopPropagation();
+        document.getElementById("playMeta").style.display = "inherit";
+        document.getElementById("next").style.display = "inline-block";
+        document.getElementById("add").style.display = "inline-block";
+        document.getElementById("delete").style.display = "inherit";
+        
+        document.getElementById("playContent").style.height = "calc(50% - 70px)";
+        document.getElementById("playArea").style.height = "calc(90% - 70px)";
+
+        while (gradientDiv.firstChild) {
+            gradientDiv.removeChild(gradientDiv.firstChild);
+        }
+        isExpanded = false;
+    }
+
+    var upPromptIco = document.createElement("i");
+    upPromptIco.setAttribute("class","fas fa-chevron-up");
+    upPromptDiv.appendChild(upPromptIco);
     titleDiv.appendChild(titleText);
     gradientDiv.appendChild(titleDiv);
+    gradientDiv.appendChild(upPromptDiv);
 
     isExpanded = true;
 }
 
 window.onload = function(){
         var httpRequest = new XMLHttpRequest();
-        httpRequest.open('GET','/music/getSongs');
+        httpRequest.open('GET','/getSongs');
         httpRequest.send();
         
         httpRequest.onreadystatechange = function(){
