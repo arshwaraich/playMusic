@@ -44,7 +44,7 @@ function nextSong(counter){
     {
         
         var audio = document.createElement('audio');
-        audio.src = "/media/songs/" + fileNames[counter];
+        audio.src = "/music/media/songs/" + fileNames[counter];
         audio.controls = false;
         audio.onended = function() { nextSong(nexCounter); };
         audio.autoplay = true;
@@ -87,7 +87,7 @@ function nextSong(counter){
     {
         var video = document.createElement('video');
         var cick = false;
-        video.src = "/media/songs/" + fileNames[counter];
+        video.src = "/music/media/songs/" + fileNames[counter];
         video.controls = false;
         video.autoplay = true;
         video.onended = function() { nextSong(nexCounter); };
@@ -128,7 +128,7 @@ function nextSong(counter){
     else
     {
         var img = document.createElement('img');
-        img.src = "/media/broken.png";
+        img.src = "/music/media/broken.png";
         videoWrap.appendChild(img);
     }
     
@@ -138,7 +138,7 @@ function nextSong(counter){
 
 function deleteCurrentSong(counter){
     let httpRequest = new XMLHttpRequest();
-    httpRequest.open('DELETE', "/delete/" + fileNames[counter]);
+    httpRequest.open('DELETE', "/music/delete/" + fileNames[counter]);
     httpRequest.send();
     document.getElementsByTagName('html')[0].style.cursor = "progress";
     httpRequest.onreadystatechange = () => {
@@ -238,7 +238,7 @@ function expandPlayContent(counter){
 
 window.onload = function(){
         var httpRequest = new XMLHttpRequest();
-        httpRequest.open('GET','/getSongs');
+        httpRequest.open('GET','/music/getSongs');
         httpRequest.send();
         
         httpRequest.onreadystatechange = function(){
